@@ -1,6 +1,6 @@
 # Nitika Bhandari — Portfolio
 
-> Healthcare Informatics · Data Analytics · Epic EHR · FHIR · SQL · Python
+> Healthcare Informatics · Data Analytics · Epic EHR · FHIR · SQL · Python · HTML · CSS · Tableau
 
 Live site: [nitikabhandari.github.io](https://nitikabhandari.github.io)
 
@@ -53,6 +53,7 @@ Healthcare appointment tracker featuring pivot table analysis, dynamic formulas,
 - Mendix Rapid Developer
 - Python Developer — W3Schools
 - CHDA (Certified Health Data Analyst) — In Progress, Expected 2026
+- Tableau — In Progress, Expected 2026
 
 ---
 
@@ -61,4 +62,4 @@ Healthcare appointment tracker featuring pivot table analysis, dynamic formulas,
 - Email: bhandarinitika@yahoo.com
 - Phone: (678) 509-4739
 - Location: Jonesboro, GA
-- LinkedIn: *(add your LinkedIn URL here)*
+- LinkedIn: https://www.linkedin.com/in/nitika-v-b-2a6221345/
