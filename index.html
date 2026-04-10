@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nitika Bhandari — Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #FAF8F4;
+    --ink: #1A1814;
+    --muted: #6B6760;
+    --accent: #2D6A4F;
+    --accent-light: #E8F3EE;
+    --accent2: #B5451B;
+    --border: #E4E0D8;
+    --card: #FFFFFF;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    line-height: 1.7;
+  }
+ 
+  /* NAV */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(250,248,244,0.92);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 56px;
+  }
+  .nav-name { font-family: 'DM Serif Display', serif; font-size: 1.1rem; color: var(--ink); }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a { font-size: 0.85rem; color: var(--muted); text-decoration: none; letter-spacing: 0.03em; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--accent); }
+ 
+  /* HERO */
+  .hero {
+    max-width: 860px; margin: 0 auto;
+    padding: 5rem 2rem 3rem;
+    display: grid; grid-template-columns: 1fr auto; gap: 3rem; align-items: start;
+  }
+  .hero-tag {
+    display: inline-block; font-size: 0.75rem; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--accent);
+    background: var(--accent-light); padding: 4px 12px;
+    border-radius: 20px; margin-bottom: 1.2rem;
+  }
+  .hero h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2.4rem, 5vw, 3.4rem);
+    line-height: 1.1; color: var(--ink);
+    margin-bottom: 1.2rem;
+  }
+  .hero h1 em { color: var(--accent); font-style: italic; }
+  .hero-sub {
+    font-size: 1rem; color: var(--muted); max-width: 480px;
+    margin-bottom: 2rem; line-height: 1.8;
+  }
+  .hero-links { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn {
+    display: inline-block; padding: 10px 22px;
+    border-radius: 6px; font-size: 0.875rem; font-weight: 500;
+    text-decoration: none; transition: all 0.2s;
+  }
+  .btn-primary { background: var(--accent); color: white; }
+  .btn-primary:hover { background: #235c40; }
+  .btn-outline { border: 1.5px solid var(--border); color: var(--ink); }
+  .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+  .hero-avatar {
+    width: 130px; height: 130px; border-radius: 50%;
+    background: var(--accent-light);
+    border: 3px solid var(--accent);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'DM Serif Display', serif;
+    font-size: 2.8rem; color: var(--accent);
+    flex-shrink: 0;
+  }
+ 
+  /* SKILLS STRIP */
+  .skills-strip {
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    background: white;
+    padding: 1rem 2rem;
+    display: flex; gap: 0.6rem; flex-wrap: wrap; justify-content: center;
+  }
+  .skill-pill {
+    font-size: 0.78rem; padding: 5px 14px;
+    border-radius: 20px; border: 1px solid var(--border);
+    color: var(--muted); background: var(--cream);
+    white-space: nowrap;
+  }
+  .skill-pill.featured { border-color: var(--accent); color: var(--accent); background: var(--accent-light); }
+ 
+  /* SECTIONS */
+  .section { max-width: 860px; margin: 0 auto; padding: 3.5rem 2rem; }
+  .section-header {
+    display: flex; align-items: center; gap: 1rem;
+    margin-bottom: 2rem;
+  }
+  .section-label {
+    font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--muted); white-space: nowrap;
+  }
+  .section-line { flex: 1; height: 1px; background: var(--border); }
+  .section-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.8rem; margin-bottom: 0.4rem;
+  }
+ 
+  /* PROJECT CARDS */
+  .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px,1fr)); gap: 1.25rem; }
+  .project-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 12px; padding: 1.5rem;
+    transition: transform 0.2s, box-shadow 0.2s;
+    position: relative; overflow: hidden;
+  }
+  .project-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0;
+    height: 3px; background: var(--accent);
+  }
+  .project-card.highlight::before { background: var(--accent2); }
+  .project-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.07); }
+  .project-type {
+    font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 0.6rem; font-weight: 500;
+  }
+  .project-card.highlight .project-type { color: var(--accent2); }
+  .project-card h3 { font-family: 'DM Serif Display', serif; font-size: 1.2rem; margin-bottom: 0.5rem; }
+  .project-card p { font-size: 0.875rem; color: var(--muted); line-height: 1.7; margin-bottom: 1rem; }
+  .project-tags { display: flex; gap: 0.4rem; flex-wrap: wrap; margin-bottom: 1rem; }
+  .tag {
+    font-size: 0.7rem; padding: 3px 10px; border-radius: 12px;
+    background: var(--cream); border: 1px solid var(--border); color: var(--muted);
+  }
+  .project-link {
+    font-size: 0.8rem; color: var(--accent); text-decoration: none; font-weight: 500;
+  }
+  .project-link:hover { text-decoration: underline; }
+ 
+  /* EXPERIENCE */
+  .exp-list { display: flex; flex-direction: column; gap: 0; }
+  .exp-item {
+    display: grid; grid-template-columns: 140px 1fr;
+    gap: 1.5rem; padding: 1.5rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .exp-item:last-child { border-bottom: none; }
+  .exp-date { font-size: 0.78rem; color: var(--muted); padding-top: 3px; line-height: 1.5; }
+  .exp-role { font-weight: 500; font-size: 0.95rem; margin-bottom: 2px; }
+  .exp-org { font-size: 0.85rem; color: var(--accent); margin-bottom: 0.6rem; }
+  .exp-bullets { list-style: none; padding: 0; }
+  .exp-bullets li {
+    font-size: 0.855rem; color: var(--muted); line-height: 1.7;
+    padding-left: 1rem; position: relative; margin-bottom: 3px;
+  }
+  .exp-bullets li::before { content: '–'; position: absolute; left: 0; color: var(--accent); }
+ 
+  /* CERTS */
+  .certs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr)); gap: 0.75rem; }
+  .cert-card {
+    background: white; border: 1px solid var(--border);
+    border-radius: 8px; padding: 1rem 1.2rem;
+  }
+  .cert-card .cert-name { font-size: 0.875rem; font-weight: 500; margin-bottom: 3px; }
+  .cert-card .cert-org { font-size: 0.78rem; color: var(--muted); }
+  .cert-card .cert-status {
+    display: inline-block; margin-top: 6px;
+    font-size: 0.68rem; padding: 2px 8px; border-radius: 10px;
+    background: var(--accent-light); color: var(--accent);
+  }
+  .cert-card .cert-status.pending {
+    background: #FEF3E2; color: #B45309;
+  }
+ 
+  /* EDUCATION */
+  .edu-list { display: flex; flex-direction: column; gap: 1rem; }
+  .edu-item {
+    background: white; border: 1px solid var(--border);
+    border-radius: 8px; padding: 1.2rem 1.5rem;
+    display: flex; justify-content: space-between; align-items: start; flex-wrap: wrap; gap: 0.5rem;
+  }
+  .edu-degree { font-weight: 500; font-size: 0.95rem; margin-bottom: 3px; }
+  .edu-school { font-size: 0.85rem; color: var(--accent); }
+  .edu-date { font-size: 0.78rem; color: var(--muted); white-space: nowrap; padding-top: 3px; }
+ 
+  /* CONTACT */
+  .contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr)); gap: 1rem; }
+  .contact-item {
+    background: white; border: 1px solid var(--border);
+    border-radius: 8px; padding: 1rem 1.2rem;
+    display: flex; align-items: center; gap: 0.75rem;
+  }
+  .contact-icon {
+    width: 36px; height: 36px; border-radius: 8px;
+    background: var(--accent-light); color: var(--accent);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1rem; flex-shrink: 0;
+  }
+  .contact-label { font-size: 0.7rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; }
+  .contact-value { font-size: 0.875rem; font-weight: 500; }
+ 
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--border);
+    text-align: center; padding: 2rem;
+    font-size: 0.78rem; color: var(--muted);
+  }
+ 
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .hero { animation: fadeUp 0.6s ease both; }
+  .skills-strip { animation: fadeUp 0.6s 0.15s ease both; }
+ 
+  @media (max-width: 600px) {
+    .hero { grid-template-columns: 1fr; }
+    .hero-avatar { display: none; }
+    .exp-item { grid-template-columns: 1fr; gap: 0.5rem; }
+    .exp-date { padding-top: 0; }
+  }
+</style>
+</head>
+<body>
+ 
+<nav>
+  <span class="nav-name">Nitika Bhandari</span>
+  <ul class="nav-links">
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+ 
+<section class="hero">
+  <div>
+    <span class="hero-tag">Healthcare Informatics · Data Analytics</span>
+    <h1>Bridging <em>clinical care</em> and technology.</h1>
+    <p class="hero-sub">
+      MS Healthcare Management & Informatics candidate at Kennesaw State University. Experienced in Epic EHR, FHIR-based systems, SQL, Python, and health data analysis. Passionate about improving patient outcomes through data.
+    </p>
+    <div class="hero-links">
+      <a href="mailto:bhandarinitika@yahoo.com" class="btn btn-primary">Get in touch</a>
+      <a href="#projects" class="btn btn-outline">View projects</a>
+    </div>
+  </div>
+  <div class="hero-avatar">NB</div>
+</section>
+ 
+<div class="skills-strip">
+  <span class="skill-pill featured">Epic Systems</span>
+  <span class="skill-pill featured">FHIR</span>
+  <span class="skill-pill featured">SQL</span>
+  <span class="skill-pill featured">Python</span>
+  <span class="skill-pill">SAS</span>
+  <span class="skill-pill">Excel</span>
+  <span class="skill-pill">Tableau</span>
+  <span class="skill-pill">HIPAA</span>
+  <span class="skill-pill">Pandas</span>
+  <span class="skill-pill">GitHub</span>
+  <span class="skill-pill">Jupyter</span>
+  <span class="skill-pill">Tkinter</span>
+  <span class="skill-pill">HTML/CSS</span>
+  <span class="skill-pill">Mendix</span>
+</div>
+ 
+<!-- PROJECTS -->
+<section class="section" id="projects">
+  <div class="section-header">
+    <span class="section-label">Work</span>
+    <div class="section-line"></div>
+  </div>
+  <h2 class="section-title">Projects</h2>
+  <div class="projects-grid">
+ 
+    <div class="project-card highlight">
+      <div class="project-type">Hackathon · Google AI Studio 2026</div>
+      <h3>Patient Passport</h3>
+      <p>AI-powered app enabling patients to carry and manage their full medical history across providers. Uses generative AI to extract and summarize patient data for quick clinical reference.</p>
+      <div class="project-tags">
+        <span class="tag">Generative AI</span>
+        <span class="tag">Health Informatics</span>
+        <span class="tag">Python</span>
+      </div>
+      <a href="#" class="project-link">View project →</a>
+    </div>
+ 
+    <div class="project-card">
+      <div class="project-type">Academic · Kennesaw State University</div>
+      <h3>EHR Dashboard</h3>
+      <p>FHIR-connected EHR dashboard supporting patient registration, search, and record updates. Built with Python and Tkinter with full HIPAA and FHIR compliance.</p>
+      <div class="project-tags">
+        <span class="tag">Python</span>
+        <span class="tag">FHIR</span>
+        <span class="tag">HIPAA</span>
+        <span class="tag">Tkinter</span>
+      </div>
+      <a href="#" class="project-link">Live app →</a>
+    </div>
+ 
+    <div class="project-card">
+      <div class="project-type">Data Analysis · Excel</div>
+      <h3>Appointment Tracker & Analytics</h3>
+      <p>Healthcare appointment tracker with pivot table analysis, dynamic formulas, conditional formatting, and a stacked bar chart showing no-show and cancellation rates by doctor.</p>
+      <div class="project-tags">
+        <span class="tag">Excel</span>
+        <span class="tag">Data Validation</span>
+        <span class="tag">Pivot Table</span>
+        <span class="tag">Data Cleaning</span>
+      </div>
+      <a href="#" class="project-link">View on GitHub →</a>
+    </div>
+ 
+    <div class="project-card">
+      <div class="project-type">Coming soon</div>
+      <h3>Your next project</h3>
+      <p>Add your next project here — a SQL analysis, Tableau dashboard, Python script, or any other work you want to showcase.</p>
+      <div class="project-tags">
+        <span class="tag">Placeholder</span>
+      </div>
+    </div>
+ 
+  </div>
+</section>
+ 
+<!-- EXPERIENCE -->
+<section class="section" id="experience">
+  <div class="section-header">
+    <span class="section-label">Career</span>
+    <div class="section-line"></div>
+  </div>
+  <h2 class="section-title">Experience</h2>
+  <div class="exp-list">
+ 
+    <div class="exp-item">
+      <div class="exp-date">Jan 2026 – Present</div>
+      <div>
+        <div class="exp-role">Graduate Research Assistant</div>
+        <div class="exp-org">Kennesaw State University</div>
+        <ul class="exp-bullets">
+          <li>Evaluating usability of a dementia intervention mobile application through structured surveys</li>
+          <li>Analyzing quantitative and qualitative survey data to identify areas for improvement</li>
+          <li>Contributing to a peer-reviewed paper on non-pharmacological dementia interventions</li>
+        </ul>
+      </div>
+    </div>
+ 
+    <div class="exp-item">
+      <div class="exp-date">Sep – Dec 2025</div>
+      <div>
+        <div class="exp-role">Data Entry Intern</div>
+        <div class="exp-org">Marcus Harris Foundation</div>
+        <ul class="exp-bullets">
+          <li>Built a mailing list of 1,000+ nonprofits by extracting and cleaning IRS tax-exempt database records</li>
+          <li>Analyzed email campaign metrics and delivered data-driven recommendations to improve donor engagement</li>
+        </ul>
+      </div>
+    </div>
+ 
+    <div class="exp-item">
+      <div class="exp-date">Jun 2023 – May 2024</div>
+      <div>
+        <div class="exp-role">Patient Access Specialist</div>
+        <div class="exp-org">Southern Regional Medical Center</div>
+        <ul class="exp-bullets">
+          <li>Processed 500+ patient registrations weekly using Epic EHR with high accuracy</li>
+          <li>Verified insurance eligibility, reducing claim errors and ensuring CMS, HIPAA, and FHIR compliance</li>
+        </ul>
+      </div>
+    </div>
+ 
+    <div class="exp-item">
+      <div class="exp-date">Jan – May 2024</div>
+      <div>
+        <div class="exp-role">Computer Lab Coordinator</div>
+        <div class="exp-org">Clayton State University</div>
+        <ul class="exp-bullets">
+          <li>Supported 200+ students and faculty with technical needs, resolving software and hardware issues</li>
+        </ul>
+      </div>
+    </div>
+ 
+  </div>
+</section>
+ 
+<!-- EDUCATION -->
+<section class="section" id="education">
+  <div class="section-header">
+    <span class="section-label">Academic</span>
+    <div class="section-line"></div>
+  </div>
+  <h2 class="section-title">Education</h2>
+  <div class="edu-list">
+    <div class="edu-item">
+      <div>
+        <div class="edu-degree">M.S. Healthcare Management & Informatics</div>
+        <div class="edu-school">Kennesaw State University</div>
+      </div>
+      <div class="edu-date">Expected May 2026</div>
+    </div>
+    <div class="edu-item">
+      <div>
+        <div class="edu-degree">B.S. Information Technology – Health Informatics</div>
+        <div class="edu-school">Clayton State University</div>
+      </div>
+      <div class="edu-date">Expected May 2024</div>
+    </div>
+    <div class="edu-item">
+      <div>
+        <div class="edu-degree">Associate Degree – Database Specialist</div>
+        <div class="edu-school">Atlanta Technical College</div>
+      </div>
+      <div class="edu-date">May 2020</div>
+    </div>
+  </div>
+</section>
+ 
+<!-- CERTIFICATIONS -->
+<section class="section">
+  <div class="section-header">
+    <span class="section-label">Credentials</span>
+    <div class="section-line"></div>
+  </div>
+  <h2 class="section-title">Certifications</h2>
+  <div class="certs-grid">
+    <div class="cert-card">
+      <div class="cert-name">SQL for Data Science</div>
+      <div class="cert-org">Coursera</div>
+      <span class="cert-status">Completed</span>
+    </div>
+    <div class="cert-card">
+      <div class="cert-name">Mendix Rapid Developer</div>
+      <div class="cert-org">Mendix</div>
+      <span class="cert-status">Completed</span>
+    </div>
+    <div class="cert-card">
+      <div class="cert-name">Python Developer</div>
+      <div class="cert-org">W3Schools</div>
+      <span class="cert-status">Completed</span>
+    </div>
+    <div class="cert-card">
+      <div class="cert-name">CHDA – Certified Health Data Analyst</div>
+      <div class="cert-org">AHIMA</div>
+      <span class="cert-status pending">In Progress · 2026</span>
+    </div>
+  </div>
+</section>
+ 
+<!-- CONTACT -->
+<section class="section" id="contact">
+  <div class="section-header">
+    <span class="section-label">Connect</span>
+    <div class="section-line"></div>
+  </div>
+  <h2 class="section-title">Get in touch</h2>
+  <div class="contact-grid">
+    <div class="contact-item">
+      <div class="contact-icon">✉</div>
+      <div>
+        <div class="contact-label">Email</div>
+        <div class="contact-value">bhandarinitika@yahoo.com</div>
+      </div>
+    </div>
+    <div class="contact-item">
+      <div class="contact-icon">☎</div>
+      <div>
+        <div class="contact-label">Phone</div>
+        <div class="contact-value">(678) 509-4739</div>
+      </div>
+    </div>
+    <div class="contact-item">
+      <div class="contact-icon">in</div>
+      <div>
+        <div class="contact-label">LinkedIn</div>
+        <div class="contact-value">View profile →</div>
+      </div>
+    </div>
+    <div class="contact-item">
+      <div class="contact-icon">⌖</div>
+      <div>
+        <div class="contact-label">Location</div>
+        <div class="contact-value">Jonesboro, GA 30238</div>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<footer>
+  © 2026 Nitika Bhandari · Healthcare Informatics & Data Analytics
+</footer>
+ 
+</body>
+</html>
